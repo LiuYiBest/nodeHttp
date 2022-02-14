@@ -1,29 +1,20 @@
 import * as http from "http";
 import {IncomingMessage, ServerResponse} from "http";
-
+import * as fs from "fs";
+import * as p from 'path'
 const server = http.createServer()
-//服务器请求
-server.on('request',(request:IncomingMessage,response:ServerResponse)=>{
-    console.log(request.method)
-    console.log('request.method')
-    console.log(request.url)
-    console.log('request.url')
-    console.log(request.headers)
-    console.log('request.headers')
+const publicDir = p.resolve(__dirname, 'public')
 
-    const array = []
-    //获取消息内容
-    request.on('data',(chunk)=>{
-        array.push(chunk)
-    })
-    //上传结束
-    request.on('end',()=>{
-        const body = Buffer.concat(array).toString();
-        console.log('body',body)
-        //响应请求
-        response.end('响应请求')
-        console.log('有人请求了')
-    })
+//服务器请求
+server.on('request', (request: IncomingMessage, response: ServerResponse) => {
+    const {method, url, headers} = request
+    switch (url) {
+        case '/index.html':
+            fs.readFile(p.resolve(publicDir, 'index.html'), (error, data) => {
+                if (error) throw error;
+                response.end(data.toString())
+            })
+    }
 })
 //监听端口
 server.listen('8888')
