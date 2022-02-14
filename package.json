@@ -1,0 +1,13 @@
+{
+  "name": "NodeHttpServer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "global": "^4.4.0",
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17"
+  }
+}
