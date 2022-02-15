@@ -19,6 +19,4 @@ server.on('request', (request: IncomingMessage, response: ServerResponse) => {
 //监听端口
 server.listen('8888')
 
-// server.listen(8888,()=>{})
-console.log('111')
 
